@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ask GPT with Your CV</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Ask GPT with Your CV</h1>
+        <input type="text" id="userPrompt" placeholder="Type your prompt..." />
+        <input type="file" id="cvFile" accept="application/pdf" />
+        <button onclick="getData()">Submit</button>
+
+        <p id="output"></p>
+        <button onclick="copyOutput()" id="copyBtn" style="display:none;">Copy Text</button>
+        <p id="copyMessage" style="display:none;">Copied cover letter</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

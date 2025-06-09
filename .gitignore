@@ -1,0 +1,27 @@
+# Environment variables
+.env
+
+# Dependency folders
+node_modules/
+
+# Uploaded files
+uploads/
+
+# Logs
+*.log
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Editor folders
+.vscode/
+.idea/
+
+# Runtime files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS temp files
+*.swp
