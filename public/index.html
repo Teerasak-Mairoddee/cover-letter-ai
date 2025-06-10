@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Auto Cover Letter</title>
+    <title>Cover Letter AI</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
@@ -30,13 +30,20 @@
         <div id="responseContainer" class="response-container" style="display:none;">
             <p id="output"></p>
             <div class="response-actions">
-                <button onclick="copyOutput()" id="copyBtn" class="copy-btn">
-                    <i class="fas fa-copy"></i> Copy
-                </button>
-                <button onclick="downloadPDF()" class="download-btn">
-                    <i class="fas fa-download"></i> PDF
-                </button>
+                <div class="left-buttons">
+                    <button onclick="copyOutput()" id="copyBtn" class="copy-btn">
+                        <i class="fas fa-copy"></i> Copy
+                    </button>
+                    <button onclick="downloadPDF()" class="download-btn">
+                        <i class="fas fa-download"></i> PDF
+                    </button>
+                </div>
+
+                <a href="https://www.buymeacoffee.com/teerasak" target="_blank" class="bmc-btn">
+                    <i class="fas fa-coffee"></i> Buy Me a Coffee
+                </a>
             </div>
+
             <p id="copyMessage" style="display:none;">Copied cover letter</p>
         </div>
     </div>
