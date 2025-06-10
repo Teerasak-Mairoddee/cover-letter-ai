@@ -42,6 +42,7 @@ ${userPrompt}
 ${pdfText.trim()}
         `;
 
+        console.log(combinedPrompt);
         const openaiRes = await fetch('https://api.openai.com/v1/chat/completions', {
             method: 'POST',
             headers: {
@@ -49,7 +50,7 @@ ${pdfText.trim()}
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                model: 'gpt-3.5-turbo', // or 'gpt-3.5-turbo'
+                model: 'gpt-4.1', // or 'gpt-3.5-turbo'
                 messages: [{ role: 'user', content: combinedPrompt }],
                 temperature: 0.7
             })

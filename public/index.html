@@ -1,21 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Ask GPT with Your CV</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Cover Letter</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
     <div class="container">
-        <h1>Ask GPT with Your CV</h1>
-        <input type="text" id="userPrompt" placeholder="Type your prompt..." />
-        <input type="file" id="cvFile" accept="application/pdf" />
-        <button onclick="getData()">Submit</button>
+        <h1>Cover Letter Generator</h1>
 
-        <p id="output"></p>
-        <button onclick="copyOutput()" id="copyBtn" style="display:none;">Copy Text</button>
-        <p id="copyMessage" style="display:none;">Copied cover letter</p>
+        <input type="text" id="userPrompt" placeholder="" />
+
+
+        <label for="cvFile" class="input-label"><i class="fas fa-file-upload"></i> Upload your PDF CV</label>
+        <label for="cvFile" class="custom-file-label">
+            <i class="fas fa-upload"></i> Choose File
+        </label>
+        <input class="pdf-input" type="file" id="cvFile" accept="application/pdf" style="display:none;" />
+        <p id="fileNameDisplay" class="file-name-feedback"></p>
+
+        <button onclick="getData()" class="submit-btn"><i class="fas fa-paper-plane"></i> Generate</button>
+
+        <div id="loading" class="loading" style="display:none;">
+            <div class="spinner"></div>
+        </div>
+
+        <div id="responseContainer" class="response-container" style="display:none;">
+            <p id="output"></p>
+            <div class="response-actions">
+                <button onclick="copyOutput()" id="copyBtn" class="copy-btn">
+                    <i class="fas fa-copy"></i> Copy
+                </button>
+                <button onclick="downloadPDF()" class="download-btn">
+                    <i class="fas fa-download"></i> PDF
+                </button>
+            </div>
+            <p id="copyMessage" style="display:none;">Copied cover letter</p>
+        </div>
     </div>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

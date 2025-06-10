@@ -1,75 +1,176 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f6f8;
+    font-family: 'Segoe UI', sans-serif;
+    background: #f4f6f9;
+    color: #333;
     margin: 0;
     padding: 0;
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: flex-start;
     min-height: 100vh;
 }
 
-h1 {
-    margin-bottom: 20px;
-    color: #333;
-}
-
 .container {
-    background-color: #fff;
-    padding: 30px 40px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    width: 90%;
-    max-width: 500px;
-}
-
-input[type="text"],
-input[type="file"] {
+    max-width: 1000px;
     width: 100%;
-    padding: 12px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+    margin: 60px auto;
+    padding: 65px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
 }
 
-button {
-    background-color: #007bff;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-bottom: 10px;
+h1 {
+    font-size: 1.5rem;
+    margin: 0 0 2rem 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-    button:hover {
-        background-color: #0056b3;
-    }
-
-#output {
-    margin-top: 20px;
-    white-space: pre-wrap;
-    background: #f1f1f1;
-    padding: 15px;
-    border-radius: 8px;
-    max-height: 300px;
-    overflow-y: auto;
-    color: #333;
-}
-
-#copyBtn {
-    background-color: #28a745;
-}
-
-    #copyBtn:hover {
-        background-color: #218838;
-    }
-
-#copyMessage {
-    color: green;
+.input-label {
+    display: block;
     font-weight: bold;
-    margin-top: 5px;
+    margin: 1.5rem 0 0.5rem;
+}
+
+input[type="text"] {
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #007bff;
+    padding: 10px 5px;
+    font-size: 1rem;
+    outline: none;
+    background: transparent;
+    transition: border-color 0.3s ease;
+    margin: 0.5rem 0 1.5rem;
+}
+
+    input[type="text"]:focus {
+        border-bottom-color: #0056b3;
+    }
+
+input::placeholder {
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+.custom-file-label {
+    display: block;
+    width: 100%;
+    padding: 12px 20px;
+    background: #007bff;
+    color: white;
+    border-radius: 5px;
+    margin: 1.5rem 0 0.5rem;
+    cursor: pointer;
+    font-weight: 500;
+    text-align: center;
+}
+
+.pdf-input {
+    display: none;
+}
+
+.file-name-feedback {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0.5rem 0 1.5rem;
+}
+
+.submit-btn {
+    display: block;
+    width: 100%;
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 14px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 2rem 0 2rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+    .submit-btn:hover {
+        background: #218838;
+    }
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem auto;
+    height: 60px;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 5px solid #ccc;
+    border-top-color: #007bff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.response-container {
+    margin-top: 2rem;
+    white-space: pre-wrap;
+}
+
+.response-actions {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.copy-btn,
+.download-btn {
+    background: #444;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+    .copy-btn:hover,
+    .download-btn:hover {
+        background: #000;
+    }
+
+@media (max-width: 480px) {
+    .container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 1.2rem;
+        gap: 6px;
+    }
+
+    input[type="text"] {
+        font-size: 0.95rem;
+    }
+
+    .submit-btn,
+    .copy-btn,
+    .download-btn,
+    .custom-file-label {
+        font-size: 0.85rem;
+        padding: 10px;
+    }
 }
