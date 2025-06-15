@@ -4,19 +4,35 @@ const fs = require('fs');
 const multer = require('multer');
 const pdfParse = require('pdf-parse');
 const path = require('path');
+const rateLimit = require('express-rate-limit');
 
 dotenv.config();
-
 const app = express();
 const port = 3000;
 
-// File upload setup
-const upload = multer({ dest: 'uploads/' });
+// Rate limiter middleware
+const limiter = rateLimit({
+    windowMs: 10 * 60 * 1000, // 10 minutes
+    max: 20, // limit each IP to 20 requests per window
+    message: { message: 'Too many requests from this IP, please try again later.' }
+});
+app.use('/api/', limiter);
+
+// Multer setup (limit size to ~2MB, accept only PDFs)
+const upload = multer({
+    dest: 'uploads/',
+    limits: { fileSize: 2 * 1024 * 1024 },
+    fileFilter: (req, file, cb) => {
+        if (file.mimetype !== 'application/pdf') {
+            return cb(new Error('Only PDF files are allowed.'));
+        }
+        cb(null, true);
+    }
+});
 
 app.use(express.static('public'));
 app.use(express.json());
 
-// Handle POST request with prompt and CV file
 app.post('/api/prompt', upload.single('cv'), async (req, res) => {
     const userPrompt = req.body.prompt;
     const pdfFile = req.file;
@@ -26,7 +42,6 @@ app.post('/api/prompt', upload.single('cv'), async (req, res) => {
     }
 
     try {
-        // Read base prompt and PDF
         const promptText = fs.readFileSync('prompt.txt', 'utf8');
         const pdfBuffer = fs.readFileSync(pdfFile.path);
         const pdfData = await pdfParse(pdfBuffer);
@@ -42,7 +57,6 @@ ${userPrompt}
 ${pdfText.trim()}
         `;
 
-        console.log(combinedPrompt);
         const openaiRes = await fetch('https://api.openai.com/v1/chat/completions', {
             method: 'POST',
             headers: {

@@ -68,7 +68,7 @@ function downloadPDF() {
 }
 
 const promptInput = document.getElementById('userPrompt');
-const fullPlaceholder = "Provide your link to the job listing here...";
+const fullPlaceholder = "Paste full job description or job post link here...";
 let index = 0;
 
 function typePlaceholder() {
